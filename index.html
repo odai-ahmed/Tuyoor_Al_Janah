@@ -1,411 +1,151 @@
-         <!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>شركة ملبوسات طيور الجنة الراقية</title>
-    <style>
-        :root {
-            --bg-grad: linear-gradient(135deg, #3d0201 0%, #830602 50%, #1a0000 100%);
-            --card-bg: rgba(137, 53, 1, 0.65);
-            --border-glow: rgba(229, 169, 59, 0.4);
-            --gold-accent: #e5a93b;
-            --gold-light: #fbe3b5;
-            --text-white: #ffffff;
-            --text-muted: #f3d4ca;
-        }
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#8c2f3a">
+  <meta name="description" content="البطاقة الرقمية لملبوسات طيور الجنة الراقية - مبيعات الجملة">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800&display=swap" rel="stylesheet">
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            -webkit-tap-highlight-color: transparent;
-        }
+  <!-- PWA / التطبيق المستقل: جميع المسارات محلية وجاهزة لـ GitHub Pages. -->
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="./logo.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="طيور الجنة">
+  <title>ملبوسات طيور الجنة الراقية</title>
 
-        body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: var(--bg-grad);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px 15px;
-            color: var(--text-white);
-        }
-
-        /* Container Card */
-        .card {
-            background: var(--card-bg);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 1.5px solid var(--border-glow);
-            border-radius: 28px;
-            padding: 35px 20px 25px;
-            text-align: center;
-            width: 100%;
-            max-width: 400px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.2);
-            position: relative;
-        }
-
-        /* Quick Utility Actions (Share + Save) */
-        .top-actions {
-            position: absolute;
-            top: 18px;
-            left: 18px;
-            right: 18px;
-            display: flex;
-            justify-content: space-between;
-            z-index: 10;
-        }
-
-        .action-btn {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--border-glow);
-            color: var(--gold-accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .action-btn:active {
-            transform: scale(0.92);
-            background: var(--gold-accent);
-            color: #3d0201;
-        }
-
-        .action-btn svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-        }
-
-        /* Clickable Logo Wrapper */
-        .logo-wrapper {
-            margin-top: 10px;
-            margin-bottom: 16px;
-            display: inline-block;
-            position: relative;
-            text-decoration: none;
-        }
-
-        .logo {
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3.5px solid var(--gold-accent);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-            background: #4a0301;
-            transition: transform 0.2s ease;
-        }
-
-        .logo-wrapper:active .logo {
-            transform: scale(0.95);
-        }
-
-        /* Text Styles */
-        h1 {
-            font-size: 21px;
-            font-weight: 800;
-            color: var(--text-white);
-            margin-bottom: 6px;
-            line-height: 1.3;
-        }
-
-        .subtitle {
-            color: var(--gold-light);
-            font-size: 13px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            display: block;
-        }
-
-        p.desc {
-            color: var(--text-muted);
-            font-size: 13.5px;
-            margin-bottom: 25px;
-            line-height: 1.5;
-        }
-
-        /* Links List */
-        .links-group {
-            display: flex;
-            flex-direction: column;
-            gap: 13px;
-        }
-
-        .btn {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 15px 16px;
-            border-radius: 16px;
-            text-decoration: none;
-            color: var(--text-white);
-            background: rgba(0, 0, 0, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.2s ease;
-            cursor: pointer;
-        }
-
-        .btn:active {
-            transform: scale(0.98);
-            background: rgba(0, 0, 0, 0.45);
-        }
-
-        .btn-right {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-
-        .icon-box {
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .icon-box svg {
-            width: 22px;
-            height: 22px;
-            fill: #ffffff;
-        }
-
-        .btn-text {
-            display: flex;
-            flex-direction: column;
-            text-align: right;
-        }
-
-        .btn-title {
-            font-size: 15px;
-            font-weight: 700;
-            line-height: 1.2;
-        }
-
-        .btn-sub {
-            font-size: 11.5px;
-            color: rgba(255, 255, 255, 0.75);
-            margin-top: 3px;
-        }
-
-        /* Accent Styles */
-        .vcf-btn {
-            background: rgba(229, 169, 59, 0.25);
-            border-color: var(--gold-accent);
-        }
-        .vcf-btn .icon-box { background: var(--gold-accent); }
-        .vcf-btn .icon-box svg { fill: #3d0201; }
-        .vcf-btn .btn-title { color: var(--gold-light); }
-
-        .whatsapp-btn .icon-box { background: #25D366; }
-        .call-btn .icon-box { background: #007AFF; }
-        .maps-btn .icon-box { background: #EA4335; }
-        .catalog-btn .icon-box { background: #9C27B0; }
-
-        .arrow-svg {
-            width: 16px;
-            height: 16px;
-            fill: rgba(255, 255, 255, 0.6);
-            flex-shrink: 0;
-        }
-
-        .footer {
-            margin-top: 25px;
-            padding-top: 16px;
-            border-top: 1px dashed rgba(255, 255, 255, 0.2);
-            font-size: 12.5px;
-            color: var(--gold-accent);
-            font-weight: 700;
-        }
-
-        /* Toast Alert */
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: rgba(0, 0, 0, 0.9);
-            color: var(--gold-light);
-            padding: 12px 24px;
-            border-radius: 25px;
-            font-size: 13.5px;
-            font-weight: bold;
-            border: 1px solid var(--gold-accent);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-            opacity: 0;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            pointer-events: none;
-        }
-
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
-        }
-    </style>
+  <style>
+    :root { --wine:#8c2f3a; --deep:#350b16; --gold:#e5a93b; --green:#089859; --line:rgba(229,169,59,.4); --text:#fffafa; }
+    * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+    html { min-height:100%; background:var(--deep); }
+    body { min-height:100vh; min-height:100svh; display:grid; place-items:center; margin:0; padding:20px 15px; overflow-x:hidden; color:var(--text); font-family:"Cairo",system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif; background:radial-gradient(circle at 12% 4%,#c35a63 0,transparent 26%),radial-gradient(circle at 90% 100%,#087050 0,transparent 28%),linear-gradient(135deg,#2d0812,var(--wine),#47101f); }
+    body::before, body::after { content:""; position:fixed; width:330px; aspect-ratio:1; border-radius:50%; filter:blur(70px); opacity:.2; pointer-events:none; background:var(--gold); top:-180px; right:-150px; }
+    body::after { background:var(--green); top:auto; right:auto; bottom:-180px; left:-150px; }
+    button, a { font:inherit; }
+    .wrap { width:min(100%,430px); perspective:1100px; }
+    .card { position:relative; overflow:hidden; padding:20px; border:1px solid var(--line); border-radius:31px; background:linear-gradient(145deg,rgba(255,255,255,.17),rgba(255,255,255,.06)); box-shadow:0 28px 70px rgba(24,3,11,.5),inset 0 1px rgba(255,255,255,.32),inset 0 0 40px rgba(229,169,59,.07); backdrop-filter:blur(24px) saturate(145%); -webkit-backdrop-filter:blur(24px) saturate(145%); transition:transform .45s cubic-bezier(.2,.9,.25,1); }
+    .card::before { content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(115deg,rgba(255,255,255,.14),transparent 33%,transparent 65%,rgba(229,169,59,.08)); }
+    .top { position:relative; z-index:1; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+    .top-side { display:flex; gap:8px; }
+    .utility { display:grid; place-items:center; width:41px; height:41px; padding:0; color:var(--gold); border:1px solid var(--line); border-radius:14px; background:rgba(39,8,17,.35); cursor:pointer; box-shadow:inset 0 1px rgba(255,255,255,.13); }
+    .utility svg { width:19px; height:19px; fill:currentColor; }
+    .language { width:auto; min-width:49px; padding:0 10px; color:#fff1c6; font-size:11px; font-weight:900; letter-spacing:.04em; }
+    .hero { position:relative; z-index:1; margin:-5px 0 18px; text-align:center; }
+    .logo { display:block; width:100px; height:100px; margin:auto; object-fit:cover; border:2px solid var(--gold); border-radius:34px; background:var(--wine); box-shadow:0 13px 29px rgba(0,0,0,.35),inset 0 1px rgba(255,255,255,.25); transform:translateZ(24px) rotate(-4deg); }
+    h1 { max-width:315px; margin:15px auto 5px; font-size:clamp(21px,5.2vw,25px); line-height:1.3; }
+    .eyebrow { color:#ffe2a8; font-size:12px; font-weight:800; }
+    .intro { max-width:335px; margin:11px auto 0; color:#fae5e6; font-size:13px; line-height:1.75; }
+    .links { position:relative; z-index:1; display:grid; gap:11px; }
+    .action { --accent:var(--gold); position:relative; isolation:isolate; display:flex; align-items:center; justify-content:space-between; min-height:68px; padding:10px 13px; overflow:hidden; color:#fff; text-align:right; text-decoration:none; border:1px solid rgba(255,255,255,.19); border-radius:19px; background:rgba(33,5,13,.24); box-shadow:inset 0 1px rgba(255,255,255,.13),0 8px 18px rgba(22,2,7,.13); cursor:pointer; transition:transform .3s cubic-bezier(.2,1.4,.4,1),background .25s,border-color .25s; }
+    .action:hover { transform:translateY(-2px); border-color:var(--accent); background:rgba(255,255,255,.12); }
+    .primary { border-color:rgba(229,169,59,.72); background:linear-gradient(110deg,rgba(229,169,59,.25),rgba(255,255,255,.08)); }
+    .whatsapp { --accent:#39d980; }.catalog { --accent:#ba86ff; }.phone { --accent:#7fbaff; }.map { --accent:#ff9a8e; }
+    .action-main { display:flex; align-items:center; gap:12px; }
+    .icon { display:grid; place-items:center; flex:0 0 42px; width:42px; height:42px; color:#361019; border-radius:13px; background:var(--accent); box-shadow:0 5px 12px rgba(0,0,0,.14); }
+    .icon svg { width:21px; height:21px; fill:currentColor; }.icon.text-icon { font-size:19px; font-weight:900; }.local-icon { width:23px; height:23px; object-fit:contain; }
+    .label { display:block; font-size:15px; font-weight:800; line-height:1.35; }.detail { display:block; margin-top:4px; color:rgba(255,255,255,.88); font-size:12px; font-weight:600; line-height:1.45; }
+    .chev { width:17px; height:17px; fill:rgba(255,255,255,.65); flex:none; }
+    .ripple { position:absolute; z-index:-1; width:12px; aspect-ratio:1; border-radius:50%; background:rgba(255,255,255,.48); pointer-events:none; transform:translate(-50%,-50%) scale(0); animation:ripple .65s ease-out forwards; }
+    @keyframes ripple { to { transform:translate(-50%,-50%) scale(30); opacity:0; } }
+    .footer { position:relative; z-index:1; margin-top:18px; padding-top:16px; border-top:1px solid rgba(255,255,255,.18); color:#f8ca73; text-align:center; font-size:12px; font-weight:700; }
+    .toast { position:fixed; z-index:20; bottom:max(24px,env(safe-area-inset-bottom)); left:50%; display:flex; align-items:center; gap:8px; max-width:calc(100vw - 32px); padding:11px 15px; border:1px solid rgba(255,255,255,.28); border-radius:999px; background:rgba(54,12,24,.8); box-shadow:0 16px 40px rgba(0,0,0,.32),inset 0 1px rgba(255,255,255,.2); backdrop-filter:blur(17px); font-size:13px; font-weight:800; opacity:0; transform:translate(-50%,150%); transition:.4s cubic-bezier(.2,1.2,.4,1); }
+    .toast.show { opacity:1; transform:translate(-50%,0); }.toast b { display:grid; place-items:center; width:20px; height:20px; border-radius:50%; background:var(--green); }
+    .modal { position:fixed; z-index:15; inset:0; display:grid; place-items:center; padding:20px; visibility:hidden; opacity:0; background:rgba(22,2,9,.67); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); transition:.25s; }
+    .modal.open { visibility:visible; opacity:1; }.modal-card { width:min(100%,320px); padding:22px; text-align:center; border:1px solid rgba(229,169,59,.63); border-radius:27px; background:linear-gradient(145deg,rgba(130,49,64,.92),rgba(52,8,19,.89)); box-shadow:0 25px 70px rgba(0,0,0,.52),inset 0 1px rgba(255,255,255,.22); transform:translateY(16px) scale(.96); transition:.32s cubic-bezier(.2,1.2,.3,1); }
+    .modal.open .modal-card { transform:none; }.modal h2 { margin:6px 0 7px; font-size:19px; }.modal p { margin:0 0 15px; color:#f7e4e4; font-size:12px; line-height:1.6; }.qr { display:block; width:240px; height:240px; max-width:100%; margin:auto; padding:8px; border-radius:17px; background:#fff; }.close { position:absolute; top:12px; right:12px; display:grid; place-items:center; width:34px; height:34px; padding:0; border:1px solid rgba(255,255,255,.32); border-radius:50%; color:#fff; background:rgba(49,7,18,.5); font-size:22px; cursor:pointer; }
+    #confetti { position:fixed; z-index:19; inset:0; pointer-events:none; }
+    .reveal { opacity:0; transform:translateY(14px); animation:rise .7s cubic-bezier(.2,.8,.3,1) forwards; }.reveal:nth-child(2){animation-delay:.08s}.reveal:nth-child(3){animation-delay:.16s}.reveal:nth-child(4){animation-delay:.24s}.reveal:nth-child(5){animation-delay:.32s}
+    @keyframes rise { to { opacity:1; transform:none; } }
+    html[dir="ltr"] .logo { transform:translateZ(24px) rotate(4deg); } html[dir="ltr"] .action { text-align:left; } html[dir="ltr"] .chev { transform:rotate(180deg); }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; transition-duration:.01ms!important; } }
+  </style>
 </head>
 <body>
-
-    <div class="card">
-        
-        <!-- Top Utility Controls -->
-        <div class="top-actions">
-            <button class="action-btn" onclick="shareProfile()" title="مشاركة البطاقة">
-                <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L7.05 10.81C6.5 10.31 5.79 10 5 10c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
-            </button>
-            <button class="action-btn" onclick="downloadVCard()" title="حفظ جهاز الاتصال">
-                <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-            </button>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+  <main class="wrap">
+    <section class="card" id="card" aria-label="بطاقة التواصل">
+      <div class="top reveal">
+        <div class="top-side">
+          <button class="utility press" id="share" aria-label="مشاركة البطاقة" title="مشاركة البطاقة"><svg viewBox="0 0 24 24"><path d="M18 16a3 3 0 0 0-2.4 1.2l-6.7-3.9a3 3 0 0 0 0-2.6l6.7-3.9A3 3 0 1 0 14.5 5a3 3 0 0 0 .1.7L7.9 9.6A3 3 0 1 0 8 14.5l6.6 3.8A3 3 0 1 0 18 16Z"/></svg></button>
+          <button class="utility press" id="qr-button" aria-label="عرض رمز QR" title="عرض رمز QR"><svg viewBox="0 0 24 24"><path d="M3 3h7v7H3Zm2 2v3h3V5Zm9-2h7v7h-7Zm2 2v3h3V5ZM3 14h7v7H3Zm2 2v3h3v-3Zm7-2h2v2h-2Zm3 0h2v3h-2Zm3 0h3v2h-3Zm-6 3h3v2h-3Zm4 2h2v2h-2Zm3-1h3v3h-3Z"/></svg></button>
         </div>
-
-        <!-- Clickable Logo Header (Links directly to current page) -->
-        <a href="." class="logo-wrapper" title="اضغط للتنشيط / فتح البطاقة">
-            <img src="Screenshot 2026-08-08 224059.png" alt="شعار المحل" class="logo" onerror="this.src='https://via.placeholder.com/110/830602/FFFFFF?text=طيور+الجنة'">
-        </a>
-
-        <h1>شركة ملبوسات طيور الجنة الراقية</h1>
-        <span class="subtitle">فخامة الملابس والأزياء الراقية (مبيعات الجملة)</span>
-        <p class="desc">أهلاً بكم! يسعدنا تواصلكم المباشر وحفظ بياناتنا عبر الخيارات المتاحة أدناه:</p>
-
-        <!-- Main Interactive Actions -->
-        <div class="links-group">
-            
-            <!-- 1. vCard Auto Download Feature -->
-            <button onclick="downloadVCard()" class="btn vcf-btn">
-                <div class="btn-right">
-                    <div class="icon-box">
-                        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.78c0-2.33 4.67-3.5 7-3.5s7 1.17 7 3.5v.78z"/></svg>
-                    </div>
-                    <div class="btn-text">
-                        <span class="btn-title">حفظ في جهات الاتصال</span>
-                        <span class="btn-sub">تنزيل بطاقة الاتصال تلقائياً (vCard)</span>
-                    </div>
-                </div>
-                <svg class="arrow-svg" viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-            </button>
-
-            <!-- 2. WhatsApp Wholesale Direct -->
-            <a href="whatsapp://send?phone=966559558051&text=%D8%A3%D9%87%D9%84%D8%A7%D9%8B%20%D9%82%D8%B3%D9%85%20%D9%85%D8%A8%D9%8A%D8%B9%D8%A7%D8%AA%20%D8%A7%D9%84%D8%AC%D9%85%D9%84%D8%A9%D9%80%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%A7%D9%84%D8%AA%D8%B4%D9%83%D9%8A%D9%84%D8%A7%D8%AA%20%D9%88%D8%A7%D9%84%D9%83%D9%85%D9%8A%D8%A7%D8%AA" class="btn whatsapp-btn">
-                <div class="btn-right">
-                    <div class="icon-box">
-                        <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42 1.56 1.56 2.41 3.63 2.41 5.83 0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.32a8.19 8.19 0 0 1-1.26-4.38c.01-4.54 3.71-8.24 8.26-8.24"/></svg>
-                    </div>
-                    <div class="btn-text">
-                        <span class="btn-title">اتواصل معنا عبر الواتس اب</span>
-                        <span class="btn-sub">خدمة التجار والطلبات المباشرة</span>
-                    </div>
-                </div>
-                <svg class="arrow-svg" viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-            </a>
-
-            <!-- 3. Wholesale Catalog / Orders (تم التعديل هنا للربط بالكتالوج) -->
-            <a href="catalog.html" class="btn catalog-btn">
-                <div class="btn-right">
-                    <div class="icon-box">
-                        <svg viewBox="0 0 24 24"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg>
-                    </div>
-                    <div class="btn-text">
-                        <span class="btn-title">كتالوج التشكيلات والدرزن</span>
-                        <span class="btn-sub">طلب قائمة الموديلات والكميات</span>
-                    </div>
-                </div>
-                <svg class="arrow-svg" viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-            </a>
-
-            <!-- 4. Phone Direct -->
-            <a href="tel:0559558051" class="btn call-btn">
-                <div class="btn-right">
-                    <div class="icon-box">
-                        <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                    </div>
-                    <div class="btn-text">
-                        <span class="btn-title">إتصال هاتف مباشر</span>
-                        <span class="btn-sub">0559558051</span>
-                    </div>
-                </div>
-                <svg class="arrow-svg" viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-            </a>
-
-            <!-- 5. Google Maps -->
-            <a href="https://maps.app.goo.gl/NBtEpz1me6ekBET56" target="_blank" class="btn maps-btn">
-                <div class="btn-right">
-                    <div class="icon-box">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    </div>
-                    <div class="btn-text">
-                        <span class="btn-title">موقعنا</span>
-                        <span class="btn-sub">Google Maps </span>
-                    </div>
-                </div>
-                <svg class="arrow-svg" viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-            </a>
-
+        <div class="top-side">
+          <button class="utility language press" id="language" aria-label="Switch language">EN</button>
+          <button class="utility press save" aria-label="حفظ جهة الاتصال" title="حفظ جهة الاتصال"><svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7ZM5 18v2h14v-2Z"/></svg></button>
         </div>
+      </div>
 
-        <div class="footer">
-            ✦ الجودة والفخامة في مكان واحد ✦
-        </div>
+      <header class="hero reveal">
+        <img class="logo" src="./logo.png" alt="شعار طيور الجنة الراقية">
+        <h1 data-i18n="title">ملبوسات طيور الجنة الراقية</h1>
+        <span class="eyebrow" data-i18n="eyebrow">فخامة الأزياء · مبيعات الجملة</span>
+        <p class="intro" data-i18n="intro">للتشكيلات الموسمية والطلبات التجارية، تواصلوا معنا مباشرةً واختروا الطريقة الأنسب لكم.</p>
+      </header>
 
-    </div>
+      <nav class="links" aria-label="وسائل التواصل">
+        <button class="action primary press save reveal"><span class="action-main"><span class="icon"><svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5Zm-7 3a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7Zm7 13H5v-.8c0-2.3 4.7-3.5 7-3.5s7 1.2 7 3.5Z"/></svg></span><span><span class="label" data-i18n="saveTitle">حفظ في جهات الاتصال</span><span class="detail" data-i18n="saveDetail">بطاقة vCard جاهزة للتنزيل</span></span></span><svg class="chev" viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></svg></button>
+        <a class="action whatsapp press reveal" id="whatsapp-link" href="https://wa.me/966559558051"><span class="action-main"><span class="icon"><img class="local-icon" src="./whatsapp.png" alt=""></span><span><span class="label" data-i18n="whatsappTitle">واتساب المبيعات</span><span class="detail" data-i18n="whatsappDetail">خدمة التجار والطلبات المباشرة</span></span></span><svg class="chev" viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></svg></a>
+        <a class="action catalog press reveal" href="./catalog.html"><span class="action-main"><span class="icon"><img class="local-icon" src="./catalog.png" alt=""></span><span><span class="label" data-i18n="catalogTitle">كتالوج التشكيلات والدرزن</span><span class="detail" data-i18n="catalogDetail">استعرض الموديلات المتاحة الآن</span></span></span><svg class="chev" viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></svg></a>
+        <a class="action phone press reveal" href="tel:0559558051"><span class="action-main"><span class="icon"><img class="local-icon" src="./phone-call.png" alt=""></span><span><span class="label" data-i18n="phoneTitle">اتصال هاتفي مباشر</span><span class="detail">055 955 8051</span></span></span><svg class="chev" viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></svg></a>
+        <a class="action map press reveal" href="https://maps.app.goo.gl/NBtEpz1me6ekBET56" target="_blank" rel="noopener"><span class="action-main"><span class="icon"><img class="local-icon" src="./maps.png" alt=""></span><span><span class="label" data-i18n="mapTitle">موقعنا</span><span class="detail" data-i18n="mapDetail">افتح الموقع عبر خرائط Google</span></span></span><svg class="chev" viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></svg></a>
+      </nav>
+      <footer class="footer reveal" data-i18n="footer">✦ الجودة والفخامة في مكان واحد ✦</footer>
+    </section>
+  </main>
 
-    <!-- Alert Toast -->
-    <div class="toast" id="toast">تم الإجراء بنجاح</div>
+  <div class="toast" id="toast" role="status" aria-live="polite"><b>✓</b><span></span></div>
+  <div class="modal" id="qr-modal" role="dialog" aria-modal="true" aria-labelledby="qr-title" aria-hidden="true">
+    <div class="modal-card"><button class="close" id="close-qr" aria-label="إغلاق">×</button><h2 id="qr-title" data-i18n="qrTitle">امسح الرمز للتواصل</h2><p data-i18n="qrDescription">شارك البطاقة فوراً مع عملائك وتجارك.</p><img class="qr" id="qr-image" alt="QR Code"></div>
+  </div>
 
-    <script>
-        function downloadVCard() {
-            const vcardData = `BEGIN:VCARD
-VERSION:3.0
-FN:شركة ملبوسات طيور الجنة الراقية
-ORG:شركة ملبوسات طيور الجنة الراقية
-TEL;TYPE=CELL,VOICE:0559558051
-URL;TYPE=WhatsApp:https://iwtsp.com/966559558051
-URL;TYPE=Maps:https://maps.app.goo.gl/NBtEpz1me6ekBET56
-NOTE:مبيعات جملة - ملبوسات وأزياء راقية
-END:VCARD`;
+  <script>
+    // جميع النصوص القابلة للتبديل في مكان واحد لسهولة التحديث.
+    const dictionary = {
+      ar: { title:'ملبوسات طيور الجنة الراقية', eyebrow:'فخامة الأزياء · مبيعات الجملة', intro:'للتشكيلات الموسمية والطلبات التجارية، تواصلوا معنا مباشرةً واختروا الطريقة الأنسب لكم.', saveTitle:'حفظ في جهات الاتصال', saveDetail:'بطاقة vCard جاهزة للتنزيل', whatsappTitle:'واتساب المبيعات', whatsappDetail:'خدمة التجار والطلبات المباشرة', catalogTitle:'كتالوج التشكيلات والدرزن', catalogDetail:'استعرض الموديلات المتاحة الآن', phoneTitle:'اتصال هاتفي مباشر', mapTitle:'موقعنا', mapDetail:'افتح الموقع عبر خرائط Google', footer:'✦ الجودة والفخامة في مكان واحد ✦', qrTitle:'امسح الرمز للتواصل', qrDescription:'شارك البطاقة فوراً مع عملائك وتجارك.', saved:'تم تجهيز بطاقة الاتصال للحفظ', copied:'تم نسخ رابط البطاقة', failed:'تعذرت المشاركة، حاول مرة أخرى' },
+      en: { title:'Tuyoor Al Janah Luxury Garments', eyebrow:'Premium fashion · Wholesale', intro:'For seasonal collections and trade orders, contact us directly using your preferred method.', saveTitle:'Save Contact', saveDetail:'Download the ready vCard', whatsappTitle:'WhatsApp Sales', whatsappDetail:'Wholesale & direct orders', catalogTitle:'Collections Catalogue', catalogDetail:'Browse available styles now', phoneTitle:'Call Us Directly', mapTitle:'Our Location', mapDetail:'Open in Google Maps', footer:'✦ Quality and elegance in one place ✦', qrTitle:'Scan to connect', qrDescription:'Share this card with customers and retailers instantly.', saved:'Your contact card is ready to save', copied:'Profile link copied', failed:'Sharing is unavailable. Please try again.' }
+    };
+    const card = document.querySelector('#card'), toast = document.querySelector('#toast'), modal = document.querySelector('#qr-modal');
+    let language = localStorage.getItem('birds-language') || 'ar', toastTimer;
+    const haptic = () => navigator.vibrate && navigator.vibrate(10);
+    function showToast(message) { toast.querySelector('span').textContent = message; toast.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('show'), 2800); }
+    function setLanguage(next) {
+      language = next; localStorage.setItem('birds-language', language);
+      document.documentElement.lang = language; document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
+      document.querySelectorAll('[data-i18n]').forEach(element => element.textContent = dictionary[language][element.dataset.i18n]);
+      document.querySelector('#language').textContent = language === 'ar' ? 'EN' : 'AR';
+      document.querySelector('#language').setAttribute('aria-label', language === 'ar' ? 'Switch language' : 'تبديل اللغة');
+      document.querySelector('.logo').alt = language === 'ar' ? 'شعار طيور الجنة الراقية' : 'Tuyoor Al Janah Luxury Garments logo';
+      document.title = dictionary[language].title;
+    }
+    document.querySelector('#language').addEventListener('click', () => { haptic(); setLanguage(language === 'ar' ? 'en' : 'ar'); });
+    setLanguage(language);
 
-            const blob = new Blob([vcardData], { type: 'text/vcard;charset=utf-8;' });
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', 'ملبوسات_طيور_الجنة.vcf');
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            showToast("جاري حفظ بطاقة الاتصال...");
-        }
+    // تموج الزر + لمسة اهتزاز قصيرة على الأجهزة الداعمة.
+    document.querySelectorAll('.press').forEach(element => element.addEventListener('pointerdown', event => {
+      haptic(); const rect = element.getBoundingClientRect(), ripple = document.createElement('i'); ripple.className = 'ripple';
+      ripple.style.cssText = `left:${event.clientX - rect.left}px;top:${event.clientY - rect.top}px`; element.append(ripple); ripple.addEventListener('animationend', () => ripple.remove());
+    }));
+    function celebrate() { const canvas = document.querySelector('#confetti'), context = canvas.getContext('2d'); canvas.width = innerWidth; canvas.height = innerHeight; const pieces = Array.from({length:48}, () => ({x:innerWidth/2,y:innerHeight/2,vx:(Math.random()-.5)*10,vy:-Math.random()*9-2,s:3+Math.random()*5,c:['#e5a93b','#fff','#089859','#f49aa4'][Math.random()*4|0]})); let frame = 0; (function draw(){ context.clearRect(0,0,canvas.width,canvas.height); pieces.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.22;context.fillStyle=p.c;context.fillRect(p.x,p.y,p.s,p.s)}); if(++frame<80) requestAnimationFrame(draw); else context.clearRect(0,0,canvas.width,canvas.height); })(); }
+    function saveContact() { const vcard = ['BEGIN:VCARD','VERSION:3.0','FN:ملبوسات طيور الجنة الراقية','ORG:ملبوسات طيور الجنة الراقية','TEL;TYPE=CELL,VOICE:+966559558051','URL:https://wa.me/966559558051','NOTE:مبيعات الجملة - ملبوسات وأزياء راقية','END:VCARD'].join('\r\n'); const url = URL.createObjectURL(new Blob([vcard],{type:'text/vcard;charset=utf-8'})), link = document.createElement('a'); link.href=url; link.download='birds-of-paradise.vcf'; link.click(); URL.revokeObjectURL(url); celebrate(); showToast(dictionary[language].saved); }
+    document.querySelectorAll('.save').forEach(button => button.addEventListener('click', saveContact));
+    document.querySelector('#share').addEventListener('click', async () => { try { if (navigator.share) await navigator.share({title:dictionary[language].title,text:dictionary[language].intro,url:location.href}); else { await navigator.clipboard.writeText(location.href); showToast(dictionary[language].copied); } celebrate(); } catch(error) { if(error.name !== 'AbortError') showToast(dictionary[language].failed); } });
 
-        async function shareProfile() {
-            if (navigator.share) {
-                try {
-                    await navigator.share({
-                        title: 'شركة ملبوسات طيور الجنة الراقية',
-                        text: 'البطاقة الرقمية الرسمية لشركة ملبوسات طيور الجنة الراقية (الجملة):',
-                        url: window.location.href
-                    });
-                } catch (err) {}
-            } else {
-                navigator.clipboard.writeText(window.location.href);
-                showToast("تم نسخ رابط الصفحة للحافظة!");
-            }
-        }
+    // رمز QR يُنشأ عند فتح النافذة؛ الرابط فقط هو الذي يُرسل إلى الخدمة.
+    function openQr() { haptic(); document.querySelector('#qr-image').src = `https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(location.href)}&color=8c2f3a`; modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); document.querySelector('#close-qr').focus(); }
+    function closeQr() { modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); document.querySelector('#qr-button').focus(); }
+    document.querySelector('#qr-button').addEventListener('click', openQr); document.querySelector('#close-qr').addEventListener('click', closeQr);
+    modal.addEventListener('click', event => { if(event.target === modal) closeQr(); }); document.addEventListener('keydown', event => { if(event.key === 'Escape' && modal.classList.contains('open')) closeQr(); });
 
-        function showToast(msg) {
-            const toast = document.getElementById("toast");
-            toast.innerText = msg;
-            toast.classList.add("show");
-            setTimeout(() => toast.classList.remove("show"), 2800);
-        }
-    </script>
+    // ميلان 3D خفيف مع المؤشر وحساس الميلان على الجوال.
+    card.addEventListener('pointermove', event => { if(event.pointerType === 'touch') return; const r=card.getBoundingClientRect(), x=(event.clientX-r.left)/r.width-.5, y=(event.clientY-r.top)/r.height-.5; card.style.transform=`rotateY(${x*5}deg) rotateX(${y*-5}deg)`; });
+    card.addEventListener('pointerleave', () => card.style.transform='');
+    addEventListener('deviceorientation', event => { if(event.gamma !== null) card.style.transform=`rotateY(${Math.max(-4,Math.min(4,event.gamma/8))}deg) rotateX(${Math.max(-4,Math.min(4,(event.beta-45)/8))}deg)`; }, {passive:true});
+    if ('serviceWorker' in navigator) addEventListener('load', () => navigator.serviceWorker.register('./sw.js'));
+  </script>
 </body>
 </html>

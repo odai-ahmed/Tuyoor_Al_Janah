@@ -1,242 +1,540 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>كتالوج الجملة | طيور الجنة الراقية</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#8c2f3a">
+    <title>كتالوج طيور الجنة</title>
+
     <style>
+        /* ============================================================
+           1. متغيرات التصميم والقيم الأساسية (Design Tokens)
+           ============================================================ */
         :root {
-            --bg-grad: linear-gradient(135deg, #3d0201 0%, #830602 50%, #1a0000 100%);
-            --card-bg: rgba(137, 53, 1, 0.65);
-            --border-glow: rgba(229, 169, 59, 0.4);
-            --gold-accent: #e5a93b;
-            --gold-light: #fbe3b5;
-            --text-white: #ffffff;
-            --text-muted: #f3d4ca;
+            --wine: #8c2f3a;
+            --deep: #350b16;
+            --gold: #e5a93b;
+            --green: #089859;
+            --line: #e5a93b66;
         }
 
         * {
             box-sizing: border-box;
-            margin: 0;
-            padding: 0;
             -webkit-tap-highlight-color: transparent;
         }
 
+        /* ============================================================
+           2. هيكل الصفحة والخلفية (Body & Layout)
+           ============================================================ */
         body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--bg-grad);
             min-height: 100vh;
-            color: var(--text-white);
-            padding: 20px;
+            margin: 0;
+            padding: 20px 16px 42px;
+            color: #fffafa;
+            font-family: system-ui, -apple-system, "Segoe UI", Tahoma, Arial, sans-serif;
+            background: 
+                radial-gradient(circle at 8% 0, #bd555e, transparent 27%),
+                radial-gradient(circle at 95% 100%, #0b7850, transparent 26%),
+                linear-gradient(135deg, var(--deep), var(--wine), #48101f);
         }
 
-        /* Header Styles */
+        .shell {
+            width: min(1120px, 100%);
+            margin: auto;
+        }
+
+        /* ============================================================
+           3. رأس الصفحة والشعار (Header & Logo Integration)
+           ============================================================ */
         .header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--border-glow);
-        }
-
-        /* حاوية الشعار والعنوان */
-        .header-brand {
-            display: flex;
-            align-items: center;
             gap: 12px;
-        }
-
-        .header-logo {
-            width: 45px;
-            height: 45px;
-            object-fit: contain;
-            border-radius: 8px;
+            margin-bottom: 25px;
+            padding: 0 0 18px;
+            border-bottom: 1px solid var(--line);
         }
 
         .header h1 {
-            font-size: 20px;
-            color: var(--gold-light);
+            margin: 0;
+            font-size: clamp(19px, 4.5vw, 25px);
         }
 
-        .back-btn {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--border-glow);
-            color: var(--gold-accent);
-            padding: 8px 16px;
-            border-radius: 12px;
+        /* دمج الشعار كأيقونة قبل العنوان */
+        .header h1::before {
+            content: "";
+            display: inline-block;
+            width: 38px;
+            height: 38px;
+            margin-left: 9px;
+            vertical-align: middle;
+            border: 1px solid #e5a93b99;
+            border-radius: 11px;
+            background: #8c2f3a url('logo.png') center/cover no-repeat;
+        }
+
+        small {
+            display: block;
+            margin-bottom: 4px;
+            color: #f7d58c;
+            font-weight: 800;
+        }
+
+        .back {
+            padding: 10px 13px;
+            border: 1px solid var(--line);
+            border-radius: 13px;
+            color: #ffe7b6;
             text-decoration: none;
-            font-size: 14px;
-            font-weight: bold;
-            transition: all 0.2s ease;
-        }
-
-        .back-btn:active {
-            background: var(--gold-accent);
-            color: #3d0201;
-        }
-
-        /* Grid Layout */
-        .catalog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 15px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        /* Product Card Styles */
-        .product-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 1px solid var(--border-glow);
-            border-radius: 16px;
-            padding: 12px;
-            text-align: center;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .product-img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 12px;
-            margin-bottom: 10px;
-            background: #4a0301;
-        }
-
-        .product-title {
-            font-size: 15px;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .product-sku {
-            color: var(--gold-light);
-            font-size: 12px;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-
-        .product-details {
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-            text-align: right;
-            line-height: 1.6;
-            flex-grow: 1;
-        }
-
-        .order-btn {
-            background: #25D366; /* WhatsApp Green */
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 10px;
-            font-weight: bold;
+            background: #fff1;
             font-size: 13px;
-            cursor: pointer;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+            font-weight: 800;
+            transition: 0.25s;
         }
 
-        .order-btn:active {
+        .back:hover {
+            transform: translateY(-2px);
+            background: #fff2;
+        }
+
+        .intro h2 {
+            margin: 0 0 6px;
+            font-size: 20px;
+        }
+
+        .intro p {
+            margin: 0;
+            color: #f4dddd;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        /* ============================================================
+           4. شريط الفلاتر (Category Pills)
+           ============================================================ */
+        .filters {
+            display: flex;
+            gap: 8px;
+            overflow: auto;
+            padding: 17px 1px;
+            scrollbar-width: none;
+        }
+
+        .filters::-webkit-scrollbar {
+            display: none;
+        }
+
+        .pill {
+            flex: none;
+            padding: 9px 14px;
+            color: #fff;
+            border: 1px solid #fff3;
+            border-radius: 999px;
+            background: #21050d55;
+            font: 800 13px inherit;
+            cursor: pointer;
+            transition: 0.28s;
+        }
+
+        .pill[aria-pressed="true"] {
+            color: #361019;
+            border-color: var(--gold);
+            background: var(--gold);
+            box-shadow: 0 7px 20px #e5a93b44;
+        }
+
+        /* ============================================================
+           5. شبكة عرض المنتجات (Product Cards Grid)
+           ============================================================ */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(212px, 1fr));
+            gap: 15px;
+        }
+
+        .product {
+            overflow: hidden;
+            border: 1px solid var(--line);
+            border-radius: 22px;
+            background: linear-gradient(145deg, #ffffff24, #ffffff10);
+            box-shadow: inset 0 1px #fff3, 0 15px 28px #18020d33;
+            backdrop-filter: blur(18px);
+            animation: appear 0.45s both;
+        }
+
+        .photo {
+            position: relative;
+            display: block;
+            width: 100%;
+            padding: 0;
+            border: 0;
+            aspect-ratio: 4 / 4.5;
+            overflow: hidden;
+            background: #702532;
+            cursor: zoom-in;
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .photo:hover img {
+            transform: scale(1.06);
+        }
+
+        .zoom {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            display: grid;
+            place-items: center;
+            width: 34px;
+            height: 34px;
+            border: 1px solid #fff6;
+            border-radius: 11px;
+            background: #300a18aa;
+            font-size: 17px;
+        }
+
+        .body {
+            padding: 13px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 8px;
+            color: #ffe7a7;
+            border-radius: 999px;
+            background: #e5a93b22;
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        .product h3 {
+            margin: 9px 0 4px;
+            font-size: 16px;
+        }
+
+        .sku {
+            color: #f8d28a;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .specs {
+            margin: 10px 0 13px;
+            color: #f7e6e6;
+            font-size: 11.5px;
+            line-height: 1.75;
+        }
+
+        .order {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border-radius: 12px;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            background: linear-gradient(100deg, #07884f, #10ad6a);
+            font-size: 12px;
+            font-weight: 900;
+            box-shadow: 0 7px 16px #08985944;
+            transition: 0.25s;
+        }
+
+        .order:active {
             transform: scale(0.95);
         }
 
-        .order-btn svg {
-            width: 16px;
-            height: 16px;
-            fill: currentColor;
+        .empty {
+            grid-column: 1 / -1;
+            padding: 45px;
+            text-align: center;
+            border: 1px dashed var(--line);
+            border-radius: 22px;
+        }
+
+        /* ============================================================
+           6. المعاينة المكبرة (Lightbox Modal)
+           ============================================================ */
+        .modal {
+            position: fixed;
+            z-index: 5;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            padding: 20px;
+            visibility: hidden;
+            opacity: 0;
+            background: #18030bb8;
+            backdrop-filter: blur(10px);
+            transition: 0.25s;
+        }
+
+        .modal.open {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .modal-card {
+            position: relative;
+            width: min(100%, 510px);
+            overflow: hidden;
+            border: 1px solid var(--gold);
+            border-radius: 25px;
+            background: #641f2c;
+            transform: translateY(15px) scale(0.97);
+            transition: 0.3s;
+        }
+
+        .modal.open .modal-card {
+            transform: none;
+        }
+
+        .modal img {
+            display: block;
+            width: 100%;
+            max-height: 72vh;
+            object-fit: contain;
+            background: #3c0d19;
+        }
+
+        .caption {
+            padding: 13px 46px 14px 15px;
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 35px;
+            height: 35px;
+            border: 1px solid #fff6;
+            border-radius: 50%;
+            color: #fff;
+            background: #300a18bb;
+            font-size: 23px;
+            cursor: pointer;
+        }
+
+        /* ============================================================
+           7. الاستجابة والحركات (Responsive & Keyframes)
+           ============================================================ */
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 10px;
+            }
+            .product {
+                border-radius: 17px;
+            }
+            .body {
+                padding: 10px;
+            }
+            .product h3 {
+                font-size: 13px;
+            }
+            .specs {
+                font-size: 10.5px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header Section -->
-    <div class="header">
-        <div class="header-brand">
-            <!-- الشعار الجديد هنا -->
-            <img src="logo.png" alt="شعار طيور الجنة" class="header-logo" onerror="this.src='https://via.placeholder.com/45/830602/FFFFFF?text=شعار'">
-            <h1>تشكيلات الجملة المتوفرة</h1>
-        </div>
-        <!-- Link back to your main page (index.html) -->
-        <a href="index.html" class="back-btn">رجوع للرئيسية</a>
-    </div>
+    <main class="shell">
+        
+        <!-- الترويسة الرئيسية -->
+        <header class="header">
+            <div>
+                <small>ملبوسات طيور الجنة الراقية</small>
+                <h1>كتالوج الجملة</h1>
+            </div>
+            <a class="back" href="index.html">الرئيسية ←</a>
+        </header>
 
-    <!-- Products Grid -->
-    <div class="catalog-grid" id="products-container">
-        <!-- Products will be injected here by JavaScript -->
+        <!-- النبذة التعريفية -->
+        <section class="intro">
+            <h2>تشكيلات مختارة بعناية</h2>
+            <p>اختر الفئة لاستعراض الموديلات، ثم المس الصورة لمعاينة أوضح. الطلب يتم مباشرةً عبر واتساب.</p>
+        </section>
+
+        <!-- أشرطة التصفية -->
+        <div class="filters" id="filters" role="toolbar" aria-label="تصفية الموديلات"></div>
+
+        <!-- شبكة عرض المنتجات -->
+        <section class="grid" id="grid" aria-live="polite"></section>
+
+    </main>
+
+    <!-- نافذة المعاينة المكبرة (Lightbox Modal) -->
+    <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="معاينة الموديل">
+        <div class="modal-card">
+            <button class="close" aria-label="إغلاق">×</button>
+            <img id="modal-img" alt="">
+            <div class="caption" id="caption"></div>
+        </div>
     </div>
 
     <script>
-        // قائمة المنتجات للعرض والتواصل المباشر
-        const products = [
-            {
-                id: "M-001",
-                name: "طقم ولادي قطعتين",
-                image: "https://via.placeholder.com/200/830602/FFFFFF?text=صورة+المنتج",
-                colors: "أبيض، كحلي، بيج",
-                sizes: "S - M - L - XL",
-                pack: "الدرزن: 12 حبة"
-            },
-            {
-                id: "D-055",
-                name: "فستان بناتي راقي",
-                image: "https://via.placeholder.com/200/830602/FFFFFF?text=صورة+المنتج",
-                colors: "وردي، أحمر، ذهبي",
-                sizes: "سنتين إلى 10 سنوات",
-                pack: "الدرزن: 6 حبات"
-            },
-            {
-                id: "T-102",
-                name: "تيشيرت صيفي",
-                image: "https://via.placeholder.com/200/830602/FFFFFF?text=صورة+المنتج",
-                colors: "تشكيلة ألوان",
-                sizes: "مقاسات موحدة",
-                pack: "الدرزن: 24 حبة"
-            }
-        ];
+        // ============================================================
+        // بيانات الموديلات وتوليد المعاينة
+        // ============================================================
+        const items = [
+            ['M-001', 'طقم ولادي قطعتين', 'أطقم ولادي', 'أبيض، كحلي، بيج', 'S – M – L – XL', 'الدرزن: 12 حبة', '#476f86'],
+            ['D-055', 'فستان بناتي راقي', 'فساتين', 'وردي، أحمر، ذهبي', 'سنتين إلى 10 سنوات', 'الدرزن: 6 حبات', '#a94161'],
+            ['T-102', 'تيشيرت صيفي', 'تيشيرتات', 'تشكيلة ألوان', 'مقاسات موحدة', 'الدرزن: 24 حبة', '#208b75'],
+            ['M-014', 'طقم كاجوال ولادي', 'أطقم ولادي', 'رمادي، زيتي، كحلي', '4 إلى 14 سنة', 'الدرزن: 12 حبة', '#687254'],
+            ['D-078', 'فستان مناسبات ناعم', 'فساتين', 'موف، شامبين، وردي', '3 إلى 12 سنة', 'الدرزن: 6 حبات', '#a56a79'],
+            ['T-126', 'تيشيرت بطباعة مميزة', 'تيشيرتات', 'ألوان موسمية', '6 إلى 16 سنة', 'الدرزن: 24 حبة', '#845a99']
+        ].map(([id, name, category, colors, sizes, pack, tone]) => ({
+            id, name, category, colors, sizes, pack, tone
+        }));
 
-        const container = document.getElementById('products-container');
-        const phone = "966559558051"; // رقم الواتساب الخاص بك
+        let active = 'الكل';
+        const grid = document.querySelector('#grid');
+        const filters = document.querySelector('#filters');
+        const modal = document.querySelector('#modal');
 
-        // دالة لعرض المنتجات
-        function renderProducts() {
-            products.forEach(product => {
-                const textMsg = encodeURIComponent(`أهلاً، أرغب بالاستفسار عن طلب كمية من الموديل:\n*${product.name}*\n*رمز الموديل:* ${product.id}`);
-                const whatsappLink = `https://wa.me/${phone}?text=${textMsg}`;
+        // ردود الفعل الاهتزازية (Haptic Feedback)
+        function vibe() {
+            if (navigator.vibrate) navigator.vibrate(10);
+        }
 
-                const cardHTML = `
-                    <div class="product-card">
-                        <img src="${product.image}" alt="${product.name}" class="product-img">
-                        <div class="product-title">${product.name}</div>
-                        <div class="product-sku">الكود: ${product.id}</div>
-                        <div class="product-details">
-                            • الألوان: ${product.colors}<br>
-                            • المقاسات: ${product.sizes}<br>
-                            • التعبئة: ${product.pack}
-                        </div>
-                        <a href="${whatsappLink}" target="_blank" style="text-decoration: none;">
-                            <button class="order-btn">
-                                <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42 1.56 1.56 2.41 3.63 2.41 5.83 0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.32a8.19 8.19 0 0 1-1.26-4.38c.01-4.54 3.71-8.24 8.26-8.24"/></svg>
-                                طلب الكمية
-                            </button>
-                        </a>
-                    </div>
-                `;
-                container.innerHTML += cardHTML;
+        // إنشاء صورة مؤقتة بصيغة SVG تلقائياً لكل موديل
+        function image(p) {
+            const mark = p.category === 'فساتين' ? '✦' : 'TJ';
+            const s = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="900">
+                <defs>
+                    <linearGradient id="g" x2="1" y2="1">
+                        <stop stop-color="${p.tone}"/>
+                        <stop offset="1" stop-color="#32101d"/>
+                    </linearGradient>
+                </defs>
+                <rect width="800" height="900" fill="url(#g)"/>
+                <circle cx="650" cy="165" r="190" fill="#e5a93b" opacity=".16"/>
+                <path d="M180 690c80-260 105-300 220-350 112 50 140 103 220 350M300 330q100-115 200 0v340H300Z" fill="#f5e3c5" fill-opacity=".78" stroke="#f6d49a" stroke-width="18"/>
+                <text x="400" y="790" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="43" fill="white">${mark}</text>
+                <text x="400" y="845" text-anchor="middle" font-family="Arial" font-size="26" fill="#ffe0a0">${p.id}</text>
+            </svg>`;
+            return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(s);
+        }
+
+        items.forEach(p => p.image = image(p));
+
+        // ============================================================
+        // رسم الفلاتر والمنتجات
+        // ============================================================
+        function drawFilters() {
+            const cats = ['الكل', ...new Set(items.map(p => p.category))];
+            filters.innerHTML = cats.map(c => 
+                `<button class="pill" data-c="${c}" aria-pressed="${active === c}">${c}</button>`
+            ).join('');
+
+            filters.querySelectorAll('button').forEach(b => {
+                b.onclick = () => {
+                    vibe();
+                    active = b.dataset.c;
+                    drawFilters();
+                    draw();
+                };
             });
         }
 
-        // تشغيل الدالة عند تحميل الصفحة
-        renderProducts();
+        function draw() {
+            const list = items.filter(p => active === 'الكل' || p.category === active);
+
+            if (!list.length) {
+                grid.innerHTML = '<p class="empty">لا توجد موديلات في هذه الفئة حالياً.</p>';
+                return;
+            }
+
+            grid.innerHTML = list.map((p, i) => {
+                const msg = encodeURIComponent(
+                    `أهلاً، أرغب بالاستفسار عن طلب كمية من الموديل:\n*${p.name}*\n*رمز الموديل:* ${p.id}`
+                );
+                return `
+                    <article class="product" style="animation-delay: ${i * 55}ms">
+                        <button class="photo" data-id="${p.id}" aria-label="معاينة ${p.name}">
+                            <img src="${p.image}" alt="${p.name}" loading="lazy" decoding="async">
+                            <span class="zoom">⌕</span>
+                        </button>
+                        <div class="body">
+                            <span class="tag">${p.category}</span>
+                            <h3>${p.name}</h3>
+                            <span class="sku">الكود: ${p.id}</span>
+                            <div class="specs">
+                                الألوان: ${p.colors}<br>
+                                المقاسات: ${p.sizes}<br>
+                                ${p.pack}
+                            </div>
+                            <a class="order" target="_blank" rel="noopener" href="https://wa.me/966559558051?text=${msg}">
+                                طلب الكمية عبر واتساب
+                            </a>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+
+            // أحداث النقر للمعاينة والطلب
+            grid.querySelectorAll('.photo').forEach(btn => {
+                btn.onclick = () => openModal(items.find(p => p.id === btn.dataset.id));
+            });
+
+            grid.querySelectorAll('.order').forEach(link => {
+                link.onpointerdown = vibe;
+            });
+        }
+
+        // ============================================================
+        // إدارة نافذة المعاينة (Modal)
+        // ============================================================
+        function openModal(p) {
+            vibe();
+            const modalImg = document.querySelector('#modal-img');
+            modalImg.src = p.image;
+            modalImg.alt = p.name;
+            document.querySelector('#caption').textContent = `${p.name} — ${p.id}`;
+            modal.classList.add('open');
+            document.querySelector('.close').focus();
+        }
+
+        function closeModal() {
+            modal.classList.remove('open');
+        }
+
+        document.querySelector('.close').onclick = closeModal;
+        modal.onclick = e => { if (e.target === modal) closeModal(); };
+        window.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+        // بدء التشغيل
+        drawFilters();
+        draw();
     </script>
 </body>
 </html>
